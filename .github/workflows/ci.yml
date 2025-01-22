@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: Get Version
         id: version
         run: echo "value=commit-$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
@@ -33,7 +33,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: false
           tags: |
-            ghcr.io/${{ github.repository }}:${{ steps.version.outputs.value }}"
+            ghcr.io/${{ github.repository }}:${{ steps.version.outputs.value }}
       
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
