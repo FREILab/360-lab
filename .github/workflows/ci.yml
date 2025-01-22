@@ -7,6 +7,9 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
       - name: Get Version
         id: version
         run: echo "value=commit-$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
