@@ -10,6 +10,10 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Github org lowercase
+        id: org
+        run: "value=${GITHUB_REPOSITORY@L}" >> $GITHUB_OUTPUT
+
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
@@ -29,5 +33,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+            ghcr.io/${{ steps.org.outputs.value }}:${{ github.ref_name }}
       
