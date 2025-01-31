@@ -1,0 +1,18 @@
+services:
+  360-lab:
+    image: 360-lab:v0.0.1
+    read_only: true
+    volumes:
+      - type: volume
+        source: 360-lab
+        target: /var/cache/nginx
+      - type: volume
+        source: 360-lab
+        target: /var/run
+    ports:
+      - "8080:80"
+    environment:
+      - NGINX_HOST=foobar.com
+      - NGINX_PORT=80
+volumes:
+  360-lab:
